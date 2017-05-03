@@ -14,7 +14,7 @@ from a small vocabulary of 250 words. Note that for the purposes of this
 assignment special characters such as commas, full-stops, parentheses etc
 are also considered words. The training set consists of 372,550 4-grams. The
 validation and test sets have 46,568 4-grams each.
-
+ 
 ### GETTING STARTED. ###
 Look at the file raw_sentences.txt. It contains the raw sentences from which
 these 4-grams were extracted. Take a look at the kind of sentences we are
