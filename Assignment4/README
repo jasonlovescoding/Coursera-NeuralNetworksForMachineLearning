@@ -1,0 +1,11 @@
+This assignment is about Restricted Boltzmann Machines (RBMs). We'll first make a few basic functions for dealing with RBMs, and then we'll train an RBM. We'll use it as the visible-to-hidden layer in a network exactly like the one we made in programming assignment 3 (PA3).
+
+For PA3, there was (and still is) a great deal of very good discussion going on, on the forum. Students learned a lot, helped others a lot, figured things out together, and provided valuable feedback. I want to thank everybody who participated in that discussion. I would never have been able to respond to every question, comment, and request for clarification on my own, but because of the community of this course, I wasn't alone. I'm looking forward to the community discussion about this assignment.
+
+This assignment is designed to be easier than PA3: for this assignment, you get more feedback and partial marks along the way, in contrast to PA3, where you were only told (by the gradient checker) whether you did everything right or not. However, for those of you who feel like taking on an extra challenge: you'll find that challenge in the last question of this assignment.
+
+Randomness
+
+RBMs are intrinsically stochastic (random), which presents problems with automated marking: if everybody's randomness comes out differently, then it gets difficult for us to tell whether the result of your simulations is right or wrong. To remedy that situation, I made the random number generator as predictable as possible, hopefully without significantly diminishing its effectiveness. You should not write any code that uses randomness explicitly. If you need to sample the state of binary units, given their probabilities of turning on, then use the function sample_bernoulli that I wrote. That's the only randomness that you'll need. Added on November 14: Whenever sample_bernoulli is called (except when a4_main is running), it prints out the size of the matrix that it received. That output provides additional information, making it easier for you to verify that your program is doing the same as the reference solution.
+
+I don't expect that many of you will come up with correct implementations that have different results from my implementation. However, if that does happen, mention it on the discussion board, and we'll discuss it and find a good way forward.
