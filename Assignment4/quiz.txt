@@ -103,7 +103,6 @@ Rundescribe_matrix(configuration_goodness_gradient(data_37_cases, test_hidden_st
 cd1
 
 Now that we have all those small functions, we're ready for a bigger job. Let's implement the Contrastive Divergence gradient estimator with 1 full Gibbs update, a.k.a. CD-1. CD-1 was introduced in the lecture. If you feel unsure about what it is, or what the details are, I recommend that you review the lectures first, before you try to write it here, in Octave.There are a number of variations of CD-1, all of which are reasonable in their own way. The variation that we're using here is the one where every time after calculating a conditional probability for a unit, we sample a state for the unit from that conditional probability (using the functionsample_bernoulli), and then we forget about the conditional probability. There are other variations where we do less sampling, but for now, we're going to do sampling everywhere: we'll sample a binary state for the hidden units conditional on the data; we'll sample a binary state for the visible units conditional on that binary hidden state (this is sometimes called the "reconstruction" for the visible units); and we'll sample a binary state for the hidden units conditional on that binary visible "reconstruction" state. Then we base our gradient estimate on all those sampled binary states. This is not the best strategy, but it is the simplest, so for now we use it.The conditional probability functions will be useful for the Gibbs update. The configuration goodness gradient function will be useful twice, for CD-1:
-
 We use it once on the given data and the hidden state that it gives rise to. That gives us the direction of changing the weights that will make the data have greater goodness, which is what we want to achieve.
 We also use it on the "reconstruction" visible state and the hidden state that it gives rise to. That gives us the direction of changing the weights that will make the reconstruction have greater goodness, so we want to go in the opposite direction, because we want to make the reconstruction have less goodness.
 This is the first time that we'll be using randomness, and we have to do it carefully, to ensure that your solution does it in the same way as the reference solution. Whenever sample_bernoulli is called (except when a4_main is running), it prints out the size of the matrix that it received. That output provides additional information, making it easier for you to verify that your program is doing the same as the reference solution. Be sure to have the most recent version of the starter code, because older versions don't have that extra output.Implement CD-1 in the file cd1.m. Vectorize it, i.e. don't use loops, and also otherwise, make sure that the calls to sample_bernoulli exactly match the ones that you see below about 1 case and 10 cases. describe_matrix(cd1(test_rbm_w, data_1_case))gave me this:
@@ -111,13 +110,11 @@ sample_bernoulli() was called with a matrix of size 100 by 1. sample_bernoulli()
   was called with a matrix of size 256 by 1. sample_bernoulli() was called with 
   a matrix of size 100 by 1. Describing a matrix of size 100 by 256. The mean of 
   the elements is -0.160742. The sum of the elements is -4115.000000
-  
 describe_matrix(cd1(test_rbm_w, data_10_cases))gave me this:
 sample_bernoulli() was called with a matrix of size 100 by 10. sample_bernoulli
   () was called with a matrix of size 256 by 10. sample_bernoulli() was called 
   with a matrix of size 100 by 10. Describing a matrix of size 100 by 256. The 
   mean of the elements is -0.185137. The sum of the elements is -4739.500000
-  
 Run describe_matrix(cd1(test_rbm_w, data_37_cases)), and report the sum, with at least two digits after the decimal point.
 
 -4669.675676
