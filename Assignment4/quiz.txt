@@ -37,19 +37,11 @@ visible_state_to_hidden_probabilities
 When we have the (binary) state of all visible units in an RBM, the conditional probability for each hidden unit to turn on (conditional on the states of the visible units) can be calculated. Conditional on the state of the visible units, the hidden units are independent of each other, so this is simply a separate computation for each hidden unit. Implement it in the file visible_state_to_hidden_probabilities.m.
 
 There's no gradient checker for this assignment, because it's not focused on gradients as much as PA3 is, but here's another way to find out early if you're going in the wrong direction. I set up a testing RBM, with 256 visible units and 100 hidden units, and some test configurations for that RBM. After you finish the function visible_state_to_hidden_probabilities, run the command describe_matrix(visible_state_to_hidden_probabilities(test_rbm_w, data_1_case)), to see how the function deals with a single case (a single configuration). When I did that, I got this output:
-
-
-
-1
 Describing a matrix of size 100 by 1. The mean of the elements is 0.447562. The 
   sum of the elements is 44.756160
 If you get something very different, then there's probably a bug somewhere. If you get something different and you think that your code is correct, then please mention it on the forum and we'll figure out what's going on.
 
 Let's also test with 10 cases (configurations) in parallel: describe_matrix(visible_state_to_hidden_probabilities(test_rbm_w, data_10_cases)) gave me this output:
-
-
-
-1
 Describing a matrix of size 100 by 10. The mean of the elements is 0.459927. The 
   sum of the elements is 459.927012
 Now run describe_matrix(visible_state_to_hidden_probabilities(test_rbm_w, data_37_cases)), and write down the sum value with at least 2 digits after the decimal point.
@@ -64,17 +56,9 @@ hidden_state_to_visible_probabilities
 When we have the state of the hidden units in the RBM, we can calculate the conditional probability of each of the visible units turning on, in a very similar way (RBMs are quite symmetrical!) Finish file hidden_state_to_visible_probabilities.m, and you can again compare to what I got.
 
 describe_matrix(hidden_state_to_visible_probabilities(test_rbm_w, test_hidden_state_1_case)) gave me this:
-
-
-
-1
 Describing a matrix of size 256 by 1. The mean of the elements is 0.474996. The 
   sum of the elements is 121.598898
 describe_matrix(hidden_state_to_visible_probabilities(test_rbm_w, test_hidden_state_10_cases)) gave me this:
-
-
-
-1
 Describing a matrix of size 256 by 10. The mean of the elements is 0.469464. The 
   sum of the elements is 1201.828527
 Now run describe_matrix(hidden_state_to_visible_probabilities(test_rbm_w, test_hidden_state_37_cases)) and report the sum, with at least 2 digits after the decimal point.
